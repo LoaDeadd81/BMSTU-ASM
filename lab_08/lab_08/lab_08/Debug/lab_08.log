@@ -1,0 +1,3 @@
+﻿  lab_08.cpp
+C:\study\asm\lab_08\lab_08\lab_08\lab_08.cpp(17): warning C4405: str: идентификатор является зарезервированным словом
+  lab_08.vcxproj -> C:\study\asm\lab_08\lab_08\Debug\lab_08.exe

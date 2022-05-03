@@ -1,0 +1,71 @@
+Microsoft (R) Macro Assembler Version 6.1a 		    03/25/22 22:21:10
+m2.asm							     Page 1 - 1
+
+
+				PUBLIC arr
+				PUBLIC inp
+
+				EXTRN print: FAR
+
+ 0000				DS2 SEGMENT
+ 0000  0005 [					arr DB 5 dup(0)
+        00
+       ]
+ 0005 0D					message DB 13
+ 0006  0A					DB 10
+ 0007  49 6E 70 75 74 20			DB 'Input numbers: $'
+       6E 75 6D 62 65 72
+       73 3A 20 24
+ 0017				DS2 ENDS
+
+ 0000				CS2 SEGMENT
+						assume CS:CS2, DS:DS2
+						
+ 0000				inp:
+ 0000  B8 ---- R				mov ax,DS2
+ 0003  8E D8					mov ds,ax
+						
+ 0005  BA 0005 R				mov dx,offset message
+ 0008  B4 09					mov ah,9 
+ 000A  CD 21					int 21h
+						
+ 000C  BB 0000 R				mov bx,offset arr
+ 000F  B4 01					mov ah,1
+ 0011  B9 0005					mov cx,5
+ 0014						inp_arr:
+ 0014  CD 21						int 21h
+ 0016  2C 30						sub al,48
+ 0018  88 07						mov [bx], al
+ 001A  43						inc bx
+ 001B  E2 F7						loop inp_arr
+						
+ 001D  EA ---- 0000 E				jmp print
+ 0022				CS2 ENDS
+
+				END
+Microsoft (R) Macro Assembler Version 6.1a 		    03/25/22 22:21:10
+m2.asm							     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CS2  . . . . . . . . . . . . . .	16 Bit	 0022	  Para	  Private 
+DS2  . . . . . . . . . . . . . .	16 Bit	 0017	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+arr  . . . . . . . . . . . . . .	Byte	 0000	  DS2	Public
+inp_arr  . . . . . . . . . . . .	L Near	 0014	  CS2	
+inp  . . . . . . . . . . . . . .	L Near	 0000	  CS2	Public
+message  . . . . . . . . . . . .	Byte	 0005	  DS2	
+print  . . . . . . . . . . . . .	L Far	 0000	  External
+
+	   0 Warnings
+	   0 Errors
